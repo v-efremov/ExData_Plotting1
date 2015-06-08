@@ -1,0 +1,14 @@
+#datafile should be located in the working directory
+elda<-read.table("household_power_consumption.txt",header=TRUE,sep=";")
+eldase<-elda[elda$Date %in% c("1/2/2007","2/2/2007"),]
+eldase$Time<-strptime(paste(as.character(eldase$Date),as.character(eldase$Time)),"%d/%m/%Y %H:%M:%S")
+par(mar=c(2,4,2,1))
+plot(eldase[,7],type="l",ylab="Energy sub metering",axes=FALSE)
+points(eldase[,8],type="l",col="red")
+points(eldase[,9],type="l",col="blue")
+box()
+axis(1,at=c(0,nrow(eldase)/2,nrow(eldase)),labels=c("Thu","Fri","Sat"))
+axis(2)
+legend("topright",lty=1,col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_1","Sub_metering_1"))
+dev.copy(png,file="plot3.png")
+dev.off()
