@@ -2,6 +2,12 @@
 elda<-read.table("household_power_consumption.txt",header=TRUE,sep=";")
 eldase<-elda[elda$Date %in% c("1/2/2007","2/2/2007"),]
 eldase$Time<-strptime(paste(as.character(eldase$Date),as.character(eldase$Time)),"%d/%m/%Y %H:%M:%S")
+eldase[,3]<-as.numeric(eldase[,3])
+eldase[,4]<-as.numeric(eldase[,4])
+eldase[,5]<-as.numeric(eldase[,5])
+eldase[,7]<-as.numeric(eldase[,7])
+eldase[,8]<-as.numeric(eldase[,8])
+eldase[,9]<-as.numeric(eldase[,9])
 
 par(mar=c(5,4,4,2),mfcol=c(2,2),cex=0.6)
 
